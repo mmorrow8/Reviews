@@ -1,4 +1,6 @@
-﻿using System.Globalization;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System.Globalization;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -37,6 +39,33 @@ namespace ReviewsBeta
                 return new List<string>();
 
             return Regex.Replace(text.ToLower(), @"[^0-9a-zA-Z']", " ").Split(" ", StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries).ToList();
+        }
+
+        public void LoadTrainingJSON(IEnumerable<string> trainingJSON)
+        {
+            foreach(var line in trainingJSON)
+            {
+                var jObj = (JObject)JsonConvert.DeserializeObject(line);
+                var review = jObj.Children().Cast<JProperty>().Where(jp => jp.Name == "reviewText").FirstOrDefault();
+
+                if (review != null)
+                    AddToChain(Split(review.Value.ToString()));
+            }
+        }
+
+        public void LoadTrainingJSON(string trainingJSON)
+        {
+            var reader = new StringReader(trainingJSON);
+            string line;
+
+            while ((line = reader.ReadLine()) != null)
+            {
+                var jObj = (JObject)JsonConvert.DeserializeObject(line);
+                var review = jObj.Children().Cast<JProperty>().Where(jp => jp.Name == "reviewText").FirstOrDefault();
+
+                if (review != null)
+                    AddToChain(Split(review.Value.ToString()));
+            }
         }
 
         public void AddToChain(List<string> words)
@@ -131,7 +160,7 @@ namespace ReviewsBeta
                         //sentences will either terminate when length = 0
                         //or when the second word is blank (words during training at the end of sentences)
                         //a blank second word will make the Generate method believe it is starting a new sentence
-                        //multiple ways to handle that scenario, but if (link.secondWord != "") should suffice
+                        //multiple ways to handle that scenario, but if (link.Key != "") should suffice
                         if (link.Key != "")
                             Generate(link.Key, length - 1);
                         
