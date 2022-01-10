@@ -1,3 +1,3 @@
 # Reviews
-API - http://mem123.azurewebsites.net<br>
+API - http://mem123.azurewebsites.net/api/generate<br>
 Website - https://blazorreviews.azurewebsites.net
