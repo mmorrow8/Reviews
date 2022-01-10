@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace ReviewsBeta
+namespace MarkovReviews
 {
     public class Review
     {
@@ -45,11 +45,7 @@ namespace ReviewsBeta
         {
             foreach(var line in trainingJSON)
             {
-                var jObj = (JObject)JsonConvert.DeserializeObject(line);
-                var review = jObj.Children().Cast<JProperty>().Where(jp => jp.Name == "reviewText").FirstOrDefault();
-
-                if (review != null)
-                    AddToChain(Split(review.Value.ToString()));
+                ProcessLine(line);
             }
         }
 
@@ -60,12 +56,17 @@ namespace ReviewsBeta
 
             while ((line = reader.ReadLine()) != null)
             {
-                var jObj = (JObject)JsonConvert.DeserializeObject(line);
-                var review = jObj.Children().Cast<JProperty>().Where(jp => jp.Name == "reviewText").FirstOrDefault();
-
-                if (review != null)
-                    AddToChain(Split(review.Value.ToString()));
+                ProcessLine(line);
             }
+        }
+
+        private void ProcessLine(string line)
+        {
+            var jObj = (JObject)JsonConvert.DeserializeObject(line);
+            var review = jObj.Children().Cast<JProperty>().Where(jp => jp.Name == "reviewText").FirstOrDefault();
+
+            if (review != null)
+                AddToChain(Split(review.Value.ToString()));
         }
 
         public void AddToChain(List<string> words)

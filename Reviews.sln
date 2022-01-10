@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reviews", "Reviews\Reviews.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestProject1", "..\ReviewsBeta\TestProject1\TestProject1.csproj", "{4524F977-F080-4278-AA1E-8D1A51E89D98}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoyaltyClassLibrary", "LoyaltyClassLibrary\LoyaltyClassLibrary.csproj", "{82F8C04C-F42B-4CCD-B29B-333C01E50509}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoyaltyClassLibrary", "LoyaltyClassLibrary\LoyaltyClassLibrary.csproj", "{82F8C04C-F42B-4CCD-B29B-333C01E50509}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorReviews", "BlazorReviews\BlazorReviews.csproj", "{CEA03FBA-ED84-49B9-B870-DEA76877EEC9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{82F8C04C-F42B-4CCD-B29B-333C01E50509}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{82F8C04C-F42B-4CCD-B29B-333C01E50509}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{82F8C04C-F42B-4CCD-B29B-333C01E50509}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEA03FBA-ED84-49B9-B870-DEA76877EEC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEA03FBA-ED84-49B9-B870-DEA76877EEC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEA03FBA-ED84-49B9-B870-DEA76877EEC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEA03FBA-ED84-49B9-B870-DEA76877EEC9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

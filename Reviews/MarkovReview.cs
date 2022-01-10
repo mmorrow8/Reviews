@@ -7,10 +7,9 @@ using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using ReviewsBeta;
-using LoyaltyClassLibrary;
+using MarkovReviews;
 
-namespace Reviews
+namespace ReviewsFunction
 {
     public static class MarkovReview
     {
@@ -39,7 +38,9 @@ namespace Reviews
 
             var response = new Review();
             response.reviewText = chain.Generate(3, 100);
-            response.reviewRating = Sentiment.Analyze(response.reviewText);
+
+            var sentiment = new Sentiment();
+            response.reviewRating = sentiment.Analyze(response.reviewText);
 
             return new JsonResult(response);
         }

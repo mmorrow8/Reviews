@@ -1,0 +1,10 @@
+{
+    "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "DefaultEndpointsProtocol=https;AccountName=storageaccounttest8a29;AccountKey=JYZI9w99dvFRLkzYBZ68NHy/z4vzndEz1AR0ZYO45Jd4RF3uLogbJyZSE946bmWInt0I3/It77Dzm/vy3MHVCw==;BlobEndpoint=https://storageaccounttest8a29.blob.core.windows.net/;TableEndpoint=https://storageaccounttest8a29.table.core.windows.net/;QueueEndpoint=https://storageaccounttest8a29.queue.core.windows.net/;FileEndpoint=https://storageaccounttest8a29.file.core.windows.net/",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet",
+    "SentimentKeyCredential": "3333ab329b604bb8a448821e97f9e358",
+    "SentimentUri": "https://loyaltyai.cognitiveservices.azure.com/",
+    "BlobConnectionString": "DefaultEndpointsProtocol=https;AccountName=loyaltyblob2022;AccountKey=1ekmpItWlmCIUy1vGxipIGywM/65VpDrFpN0L4x0rnjlznFrgabapuZY+o70+I/ZIq0ep87zDYzdUtBqjkTdUQ==;EndpointSuffix=core.windows.net"
+  }
+}

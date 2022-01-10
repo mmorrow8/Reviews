@@ -1,0 +1,46 @@
+﻿@page "/"
+@inject HttpClient client
+@using Newtonsoft.Json
+@using Data
+
+<div>
+    <div class="row" style="margin:10px;margin-bottom:50px;">
+        <div class="col"><button class="btn btn-info" @onclick="GetReview">Get Review</button></div>
+    </div>
+
+    @if (review != null)
+    {
+        <br />
+        <br />
+        <label>Rating</label>
+        <br />
+        @(string.IsNullOrWhiteSpace(review.reviewText) ? "Retrieving..." : @review.reviewRating.ToString());
+
+        <br />
+        <br />
+        <label>Review</label>
+        <br />
+        @(string.IsNullOrWhiteSpace(review.reviewText) ? "Retrieving..." : @review.reviewText);
+    }
+</div>
+
+@code {
+    Review review;
+
+    private async void GetReview()
+    {
+        if (review is null)
+            review = new Review();
+
+        review.reviewText = "";
+
+        var apiName = "api/generate";
+        var httpResponse = await client.GetAsync(apiName);
+        if (httpResponse.IsSuccessStatusCode)
+        {
+            var responseText = await httpResponse.Content.ReadAsStringAsync();
+            review = JsonConvert.DeserializeObject<Review>(responseText);
+            StateHasChanged();
+        }
+    }
+}

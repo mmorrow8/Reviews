@@ -2,19 +2,25 @@
 using System;
 using Azure.AI.TextAnalytics;
 
-namespace ReviewsBeta
+namespace MarkovReviews
 {
-    public static class Sentiment
+    public class Sentiment
     {
-        private static string SentimentKeyCredential = Environment.GetEnvironmentVariable("SentimentKeyCredential", EnvironmentVariableTarget.Process);
-        private static string SentimentUri = Environment.GetEnvironmentVariable("SentimentUri", EnvironmentVariableTarget.Process);
+        private static TextAnalyticsClient client;
 
-        private static readonly AzureKeyCredential credentials = new AzureKeyCredential(SentimentKeyCredential);
-        private static readonly Uri endpoint = new Uri(SentimentUri);
-
-        public static decimal Analyze(string inputText)
+        public Sentiment()
         {
-            var client = new TextAnalyticsClient(endpoint, credentials);
+            var SentimentKeyCredential = Environment.GetEnvironmentVariable("SentimentKeyCredential");
+            var SentimentUri = Environment.GetEnvironmentVariable("SentimentUri");
+
+            AzureKeyCredential credentials = new AzureKeyCredential(SentimentKeyCredential);
+            Uri endpoint = new Uri(SentimentUri);
+
+            client = new TextAnalyticsClient(endpoint, credentials);
+        }
+
+        public decimal Analyze(string inputText)
+        {
             var result = 0m;
 
             if (!string.IsNullOrWhiteSpace(inputText))
